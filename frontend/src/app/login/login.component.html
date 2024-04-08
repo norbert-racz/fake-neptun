@@ -1,0 +1,8 @@
+<div>
+    <form (ngSubmit)="onSubmit()">
+        <input [formControl]="username" type="text"  placeholder="Felhasználónév">
+        <input [formControl]="password" type="password" placeholder="Jelszó">
+        <input type="submit" value="Bejelentkezés">
+        <input type="button" value="Regisztráció" (click)="toRegisterPage()">
+    </form>
+</div>

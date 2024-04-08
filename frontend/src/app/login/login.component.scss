@@ -1,0 +1,13 @@
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    gap: 10px;
+}
+
+div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 100px;
+}
