@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { routePaths } from '../app.routes';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +13,18 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export class RegisterComponent {
 
-  username = new FormControl('');
-  password = new FormControl('');
-  passwordAgain = new FormControl('');
+  register = this.formBuilder.group({
+    username: '',
+    password: '',
+    passwordAgain: ''
+  });
 
-  constructor(){}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+  ){}
 
   public onSubmit(){
-
+    this.router.navigateByUrl(routePaths.REGISTRATION_STATUS);
   }
 }

@@ -1,8 +1,8 @@
 <div>
-    <form (ngSubmit)="onSubmit()">
-        <input [formControl]="username" type="text"  placeholder="Felhasználónév">
-        <input [formControl]="password" type="password" placeholder="Jelszó">
-        <input type="submit" value="Bejelentkezés">
-        <input type="button" value="Regisztráció" (click)="toRegisterPage()">
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+        <input formControlName="username" type="text"  placeholder="Felhasználónév">
+        <input formControlName="password" type="password" placeholder="Jelszó">
+        <button type="submit">Bejelentkezés</button>
+        <button id="register" (click)="toRegisterPage()">Regisztráció</button>
     </form>
 </div>

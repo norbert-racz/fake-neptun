@@ -1,0 +1,13 @@
+div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+div div {
+    display: flex;
+    width: 250px;
+    align-items: center;
+    padding-top: 100px;
+    flex-direction: column;
+}

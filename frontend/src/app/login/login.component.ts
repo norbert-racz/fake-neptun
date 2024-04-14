@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { routePaths } from '../app.routes';
 
@@ -11,10 +11,16 @@ import { routePaths } from '../app.routes';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  username = new FormControl('');
-  password = new FormControl('');
 
-  constructor(private router: Router){}
+  login = this.formBuilder.group({
+    username: '',
+    password: ''
+  })
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+  ){}
 
   public onSubmit(){
 
