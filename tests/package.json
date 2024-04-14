@@ -12,9 +12,7 @@
   "devDependencies": {
     "@playwright/test": "^1.43.1",
     "@types/node": "^20.12.7",
-    "fake_neptun_common": "file:../common"
-  },
-  "dependencies": {
+    "fake_neptun_common": "file:../common",
     "dotenv": "^16.4.5"
   }
 }
