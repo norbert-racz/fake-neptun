@@ -7,7 +7,7 @@ import FakeNeptunTexts from 'fake_neptun_common/build/fake_neptun_texts';
 import HomePage from '../pages/home';
 
 test.describe("Register", () => {
-    test('Register new student', async ({ page }) => {
+    test('New student can register', async ({ page }) => {
         const loginPage = new LoginPage(page);
         const registerPage = new RegisterPage(page);
         const registrationStatusPage = new RegistrationStatusPage(page);
@@ -22,5 +22,17 @@ test.describe("Register", () => {
         expect(await registrationStatusPage.statusBox.innerText()).toBe(FakeNeptunTexts.SUCCESSFULL_REGISTRATION_STATUS_TEXT);
         await registrationStatusPage.okButton.click();
         await expect(homePage.homePageHeader).toBeVisible();
+    });
+
+    test('Username, password and passwordAgain is required', async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        const registerPage = new RegisterPage(page);
+
+        await page.goto(Context.BASE_URL);
+        await loginPage.registerButton.click();
+        await registerPage.registerButton.click();
+        expect(await registerPage.userNameErrorMessageBox.innerText()).toBe(FakeNeptunTexts.USERNAME_IS_REQUIRED_ERROR_MESSAGE);
+        expect(await registerPage.passwordErrorMessageBox.innerText()).toBe(FakeNeptunTexts.PASSWORD_IS_REQUIRED_ERROR_MESSAGE);
+        expect(await registerPage.passwordAgainErrorMessageBox.innerText()).toBe(FakeNeptunTexts.PASSWORD_AGAIN_IS_REQUIRED_ERROR_MESSAGE);
     });
 });
