@@ -8,6 +8,7 @@ export default class RegisterPage {
     readonly userNameErrorMessageBox: Locator;
     readonly passwordErrorMessageBox: Locator;
     readonly passwordAgainErrorMessageBox: Locator;
+    readonly passwordsMustMatchErrorMessageBox: Locator;
 
     constructor(page: Page){
         this.userNameInput = page.locator('#user-name');
@@ -17,5 +18,6 @@ export default class RegisterPage {
         this.userNameErrorMessageBox = page.locator('#user-name-error-message-box');
         this.passwordErrorMessageBox = page.locator('#password-error-message-box');
         this.passwordAgainErrorMessageBox = page.locator('#password-again-error-message-box');
+        this.passwordsMustMatchErrorMessageBox = page.locator('#passwords-must-match-error-message-box');
     }
 }

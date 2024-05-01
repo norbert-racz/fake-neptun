@@ -35,4 +35,17 @@ test.describe("Register", () => {
         expect(await registerPage.passwordErrorMessageBox.innerText()).toBe(FakeNeptunTexts.PASSWORD_IS_REQUIRED_ERROR_MESSAGE);
         expect(await registerPage.passwordAgainErrorMessageBox.innerText()).toBe(FakeNeptunTexts.PASSWORD_AGAIN_IS_REQUIRED_ERROR_MESSAGE);
     });
+
+    test('Password and passwordAgain must match', async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        const registerPage = new RegisterPage(page);
+
+        await page.goto(Context.BASE_URL);
+        await loginPage.registerButton.click();
+        await registerPage.userNameInput.fill('newUser');
+        await registerPage.passwordInput.fill('password');
+        await registerPage.passwordAgainInput.fill('password1');
+        await registerPage.registerButton.click();
+        expect(await registerPage.passwordsMustMatchErrorMessageBox.innerText()).toBe(FakeNeptunTexts.PASSWORDS_MUST_MATCH_ERROR_MESSAGE);
+    })
 });
