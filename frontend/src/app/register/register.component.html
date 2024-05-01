@@ -1,11 +1,12 @@
-<div>
+<div id="container">
     <form [formGroup]="register" (ngSubmit)="onSubmit()">
         <input id="user-name" formControlName="username" type="text"  placeholder="Felhasználónév">
-        <div id="user-name-error-message-box" *ngIf="(submitted || register.get('username')?.touched) && register.get('username')?.invalid">{{userNameErrorMessage}}</div>
+        <div id="user-name-error-message-box" class="error-message" *ngIf="(submitted || register.get('username')?.touched) && register.get('username')?.hasError('required')">{{userNameErrorMessage}}</div>
         <input id="password" formControlName="password" type="password" placeholder="Jelszó">
-        <div id="password-error-message-box" *ngIf="(submitted || register.get('password')?.touched) && register.get('password')?.invalid">{{passwordErrorMessage}}</div>
+        <div id="password-error-message-box" class="error-message" *ngIf="(submitted || register.get('password')?.touched) && register.get('password')?.hasError('required')">{{passwordErrorMessage}}</div>
         <input id="password-again" formControlName="passwordAgain" type="password" placeholder="Jelszó újra">
-        <div id="password-again-error-message-box" *ngIf="(submitted || register.get('passwordAgain')?.touched) && register.get('passwordAgain')?.invalid">{{passwordAgainErrorMessage}}</div>
+        <div id="password-again-error-message-box" class="error-message" *ngIf="(submitted || register.get('passwordAgain')?.touched) && register.get('passwordAgain')?.hasError('required')">{{passwordAgainErrorMessage}}</div>
+        <div id="passwords-must-match-error-message-box" class="error-message" *ngIf="(submitted || register.get('passwordAgain')?.touched) && register.get('passwordAgain')?.hasError('notMatching')">{{passwordsMustMatchErrorMessage}}</div>
         <button id="register" type="submit">Regisztráció</button>
     </form>
 </div>

@@ -5,9 +5,13 @@ form {
     gap: 10px;
 }
 
-div {
+#container {
     display: flex;
     width: 100%;
     justify-content: center;
     padding-top: 100px;
+}
+
+.error-message {
+    color: red;
 }
