@@ -5,13 +5,15 @@ import RegisterPage from '../pages/register';
 import RegistrationStatusPage from '../pages/registration_status';
 import FakeNeptunTexts from 'fake_neptun_common/build/fake_neptun_texts';
 import HomePage from '../pages/home';
+import UnregisterPage from '../pages/unregister';
 
 test.describe("Register", () => {
-    test('New student can register, logout and login', async ({ page }) => {
+    test('New student can register, logout, login, unregister and fail to login', async ({ page }) => {
         const loginPage = new LoginPage(page);
         const registerPage = new RegisterPage(page);
         const registrationStatusPage = new RegistrationStatusPage(page);
         const homePage = new HomePage(page);
+        const unregisterPage = new UnregisterPage(page);
 
         const username = 'newUser';
         const password = 'password';
@@ -31,6 +33,13 @@ test.describe("Register", () => {
         await loginPage.passwordInput.fill(password);
         await loginPage.loginButton.click();
         await expect(homePage.homePageHeader).toBeVisible();
+        await homePage.unregisterButton.click();
+        await unregisterPage.yesButton.click();
+        await expect(loginPage.loginButton).toBeVisible();
+        await loginPage.userNameInput.fill(username);
+        await loginPage.passwordInput.fill(password);
+        await loginPage.loginButton.click();
+        await expect(loginPage.invalidUserNameOrPasswordErrorMessage).toBeVisible();
     });
 
     test('Username, password and passwordAgain is required', async ({ page }) => {
