@@ -23,7 +23,7 @@ export class LoginComponent {
   ){}
 
   public onSubmit(){
-
+    this.router.navigateByUrl(routePaths.HOME);
   }
 
   public toRegisterPage(){
