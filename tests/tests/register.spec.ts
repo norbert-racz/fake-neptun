@@ -7,20 +7,29 @@ import FakeNeptunTexts from 'fake_neptun_common/build/fake_neptun_texts';
 import HomePage from '../pages/home';
 
 test.describe("Register", () => {
-    test('New student can register', async ({ page }) => {
+    test('New student can register, logout and login', async ({ page }) => {
         const loginPage = new LoginPage(page);
         const registerPage = new RegisterPage(page);
         const registrationStatusPage = new RegistrationStatusPage(page);
         const homePage = new HomePage(page);
 
+        const username = 'newUser';
+        const password = 'password';
+
         await page.goto(Context.BASE_URL);
         await loginPage.registerButton.click();
-        await registerPage.userNameInput.fill('newUser');
-        await registerPage.passwordInput.fill('password');
-        await registerPage.passwordAgainInput.fill('password');
+        await registerPage.userNameInput.fill(username);
+        await registerPage.passwordInput.fill(password);
+        await registerPage.passwordAgainInput.fill(password);
         await registerPage.registerButton.click();
         expect(await registrationStatusPage.statusBox.innerText()).toBe(FakeNeptunTexts.SUCCESSFULL_REGISTRATION_STATUS_TEXT);
         await registrationStatusPage.okButton.click();
+        await expect(homePage.homePageHeader).toBeVisible();
+        await homePage.logoutButton.click();
+        await expect(loginPage.loginButton).toBeVisible();
+        await loginPage.userNameInput.fill(username);
+        await loginPage.passwordInput.fill(password);
+        await loginPage.loginButton.click();
         await expect(homePage.homePageHeader).toBeVisible();
     });
 
