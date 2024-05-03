@@ -18,4 +18,8 @@ export class HomeComponent {
   logout(){
     this.router.navigateByUrl(routePaths.LOGIN);
   }
+
+  unregister(){
+    this.router.navigateByUrl(routePaths.UNREGISTER);
+  }
 }
