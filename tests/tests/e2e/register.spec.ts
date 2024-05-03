@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
-import Context from '../context';
-import LoginPage from '../pages/login';
-import RegisterPage from '../pages/register';
-import RegistrationStatusPage from '../pages/registration_status';
+import Context from '../../context';
+import LoginPage from '../../pages/login';
+import RegisterPage from '../../pages/register';
+import RegistrationStatusPage from '../../pages/registration_status';
 import FakeNeptunTexts from 'fake_neptun_common/build/fake_neptun_texts';
-import HomePage from '../pages/home';
-import UnregisterPage from '../pages/unregister';
+import HomePage from '../../pages/home';
+import UnregisterPage from '../../pages/unregister';
 
 test.describe("Register", () => {
     test('New student can register, logout, login, unregister and fail to login', async ({ page }) => {
